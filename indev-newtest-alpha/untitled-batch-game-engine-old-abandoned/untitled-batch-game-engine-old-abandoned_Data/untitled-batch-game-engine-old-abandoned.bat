@@ -41,7 +41,7 @@ cls
 
 REM Change version number when you update the game at all, used in lots of
 REM places but you only have to change it here due to the power of variables.
-SET VERSION=0.3
+SET VERSION=0.3.2
 SET DEVSTAGE=newtest v
 
 REM Combine the above two into vars 'fullverinfo' for easier usage later.
@@ -787,7 +787,7 @@ goto updateroom
 
 :youalreadyare
 :indeeditis
-CALL .\depends\cecho  {teal}You already are doing a(n) that.{#}
+CALL .\depends\cecho  {teal}You already are doing a(n) that.{#}{\n}
 goto updateroom
 
 
