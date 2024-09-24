@@ -131,13 +131,13 @@ REM Set up the variable for winning through the weight victory condition
 set weightVICTORY=0
 set weightVICTORYfirst=0
 
-REM We use renderweightdisplay to determine whether or not the player is reminded of their weight each turn.
+REM We use to determine whether or not the player is reminded of their weight each turn.
 REM This can be disabled if, for example, art or text is required to fill more space than usual.
-SET renderweightdisplay==1
+REM SET renderweightdisplay==1
 
 REM Setup a turn-counter variable for use in tracking time and turn-based combat and such.
-SET /A turncounter==1
-set /A turncounter=%turncounter% + 0
+REM SET /A turncounter==1
+REM set /A turncounter=%turncounter% + 0
 
 REM Enable delayed expansion to fix some parsing issues and lets me be
 REM a little more lazy with my code in some situations, always have this.
@@ -211,16 +211,16 @@ set BRAND3=%blockred%
 REM Print the branding, full version info, and the initial room description,
 REM which is printed here intead of being in the look command's stuff because
 REM we only want it to print once at game start.
-CALL .\depends\cecho  %BRAND%
-CALL .\depends\cecho  %BRAND2%
+REM CALL .\depends\cecho  %BRAND%
+REM CALL .\depends\cecho  %BRAND2%
 echo.
-CALL .\depends\cecho  {white}{\n}
-CALL .\depends\cecho  {black}.......................{white}V Block characters loaded: V{default}{\n}
-CALL .\depends\cecho  {black}%blockwhite% & %blockred% & %blockgreen% & %blockyellow% & %blockblue% & %blocknavy% & %blockteal% & %blockmaroon% & %blockpurple% & %blockolive% & %blocksilver% & %blockgray% & %blocklime% & %blockaqua% & %blockfuchisa%
+REM CALL .\depends\cecho  {white}{\n}
+REM CALL .\depends\cecho  {black}.......................{white}V Block characters loaded: V{default}{\n}
+REM CALL .\depends\cecho  {black}%blockwhite% & %blockred% & %blockgreen% & %blockyellow% & %blockblue% & %blocknavy% & %blockteal% & %blockmaroon% & %blockpurple% & %blockolive% & %blocksilver% & %blockgray% & %blocklime% & %blockaqua% & %blockfuchisa%
 echo.
 echo.
 
-set renderweightdisplay=1
+REM set renderweightdisplay=1
 
 echo You slowly open your eyes... it feels like days since you blacked out. 
 echo A soft gust of air blowing on you... are you outside? You feel grass
@@ -233,8 +233,8 @@ echo in such an uncomfortable position.
 
 
 REM default turn is 1, turns to jump each updateroom is also always 1.
-set /A turncounter=%turncounter% + 0
-set turnskip=1
+REM set /A turncounter=%turncounter% + 0
+REM set turnskip=1
 
 REM Big ol' important one right here, UPDATEROOM. It updates many vars based
 REM on the state of other vars, and must be gone to almost constantly.
@@ -243,7 +243,7 @@ REM other vars, and update the text and stuff, everything.
 REM REMEMBER!!! "goto" here EACH TIME WE GET AN INVENTORY ITEM or IF WE 
 REM CHANGE ROOM LOCALE OR ANY TEXT OR DO ABSOLUTELY ANYTHING BIG
 :updateroom
-set renderweightdisplay=0
+REM set renderweightdisplay=0
 
 
 
@@ -260,15 +260,15 @@ REM done that yay.
 
 REM THIS IS HOW YOU COUNT UP NUMBERS IN BATCH, IT'S RIGHT HERE, THIS ONE
 REM THIS TOOK ME HOURS FOR SOME REASON
-set /A turncounter=%turncounter% + 1
+REM set /A turncounter=%turncounter% + 1
 
 
 
 REM default turn is 1, turns to jump each updateroom is also always 1.
-setlocal enabledelayedexpansion
+REM setlocal enabledelayedexpansion
 
 REM turnskip is used to determine the amount of turns we move each time this is ran (please only 1)
-set turnskip==1
+REM set turnskip==1
 
 REM debug echo no longer needed
 REM echo turnskip is: %turnskip%
@@ -311,27 +311,27 @@ if %weight% LEQ 159 set WEIGHTRANKING=%weightrankerrorlow%
 if %weight% LEQ 1 set WEIGHTRANKING=%weightrankerrorzero%
 
 REM Combine the weight into a usable full display
-set WEIGHTFULLINFO=%WEIGHT%%WEIGHTSYMBOL%
+REM set WEIGHTFULLINFO=%WEIGHT%%WEIGHTSYMBOL%
 
 REM Combine the height into a usable full display
-set HEIGHTFULLINFO=%HEIGHTFOOT%%HEIGHTSYMBOLFOOT%%HEIGHTINCH%%HEIGHTSYMBOLINCH%
+REM set HEIGHTFULLINFO=%HEIGHTFOOT%%HEIGHTSYMBOLFOOT%%HEIGHTINCH%%HEIGHTSYMBOLINCH%
 
 REM Combine weight and height's full displays into a printable string, also with weight ranking.
-set WHOLEBODYINFO=%WEIGHTFULLINFO% at %HEIGHTFULLINFO%, this makes you %WEIGHTRANKING%
+REM set WHOLEBODYINFO=%WEIGHTFULLINFO% at %HEIGHTFULLINFO%, this makes you %WEIGHTRANKING%
 
 REM foodlbs is used to determine the weight gain of the current food you're eating, but because we're 
 REM in updateroom there is NO CURRENT FOOD, so we make it 0 until another food event.
-set foodlbs==0
+REM set foodlbs==0
 
 REM here is the section for dealing with the weight in updateroom, so we can constantly monitor and update it,
 REM and so we can constantly do actions and tasks dependant on it.
 
 REM We use renderweightdisplay to determine whether or not the player is reminded of their weight each turn.
 REM This can be disabled if, for example, art or text is required to fill more space than usual.
-if %renderweightdisplay%==1 CALL .\depends\cecho  {\n}{\n}You are: %wholebodyinfo%{\n}{\n}
+REM if %renderweightdisplay%==1 CALL .\depends\cecho  {\n}{\n}You are: %wholebodyinfo%{\n}{\n}
 
 
-set renderweightdisplay=%renderweightdisplay%
+REM set renderweightdisplay=%renderweightdisplay%
 
 
 REM There is weight max of 760 for technical sanity reasons, because anything more would be harder to code
@@ -399,7 +399,7 @@ REM if we are still 1 for some reason, die.
 if %turncounter% EQU 1 goto eof
 REM /NEVER DO ANYTHING ON TURN 1 THOUGH, OR IT CAUSES A TEXT ISSUE../
 
-if %turncounter% EQU 3 CALL .\depends\cecho  {\n}{yellow}Tip: regular text-adventure commands such as 'items' and 'look' work here.{default}{\n}
+REM if %turncounter% EQU 3 CALL .\depends\cecho  {\n}{yellow}Tip: regular text-adventure commands such as 'items' and 'look' work here.{default}{\n}
 
 
 
@@ -463,7 +463,7 @@ REM goto updateroom after it, and some echo success text.
 :clearscreen
 cls
 echo Okay, sure. Screen cleared.
-set renderweightdisplay=1
+REM set renderweightdisplay=1
 goto updateroom
 
 REM Code for the commands and situations that involve checking your items.
@@ -475,13 +475,13 @@ REM OR the item var isn't 1, then nothing is shown for that particular item.
 echo.
 echo ________________________________________________
 echo.
-CALL .\depends\cecho  {yellow}You check your backpack. You find the following:{default}
+REM CALL .\depends\cecho  {yellow}You check your backpack. You find the following:{default}
 echo.
 if %KEY%==1 echo %KEYDESC%
 if %APPLE%==1 echo %APPLEDESC%
 echo ________________________________________________
 echo.
-set renderweightdisplay=1
+REM set renderweightdisplay=1
 goto updateroom
 
 
@@ -519,7 +519,7 @@ set query=%query:"=%
 
 REM If character is non-alphanumeric (for most characters), goto error
 for /f "delims=abcdefghijklmnopqrstuvwxyz%% " %%I in ("%query%") do (
-CALL .\depends\cecho  {teal}Don't use special characters or numbers.{#}{\n}
+REM CALL .\depends\cecho  {teal}Don't use special characters or numbers.{#}{\n}
 goto novarsendback
 )
 
@@ -575,7 +575,7 @@ REM If nothing valid is typed, or something goes wrong in parsing text,
 REM we go to error, which throws a generic error message and then
 REM goes back to good old faithful updateroom to try to handle things nicely.
 :error
-CALL .\depends\cecho  {teal}You can't do that {teal}right now, maybe you never can.{#}
+REM CALL .\depends\cecho  {teal}You can't do that {teal}right now, maybe you never can.{#}
 echo.
 
 
@@ -584,7 +584,7 @@ REM treated as if it was a raw batch command and causing MANY MANY issues.
 REM Glad I managed to figure out where query wasn't being reset quite right..
 set QUERY=""
 
-CALL .\depends\cecho  {white}
+REM CALL .\depends\cecho  {white}
 
 goto updateroom
 exit
@@ -592,7 +592,7 @@ exit
 
 :errornotroom
 
-CALL .\depends\cecho  {teal}That {teal}can't be done / isn't here right now, maybe it won't ever be.{#}
+REM CALL .\depends\cecho  {teal}That {teal}can't be done / isn't here right now, maybe it won't ever be.{#}
 
 goto updateroom
 exit
@@ -603,7 +603,7 @@ REM Tell off the user for trying to enter Batch variables to cheat.
 REM Because nobody likes a cheater!
 :novarsendback
 set QUERY=
-CALL .\depends\cecho  {teal}You typed something you shouldn't. Only A - Z, alphabet{\n}character entries please.{#}
+REM CALL .\depends\cecho  {teal}You typed something you shouldn't. Only A - Z, alphabet{\n}character entries please.{#}
 
 goto updateroom
 exit
